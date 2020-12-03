@@ -1,11 +1,11 @@
-package AOC2020.DayOne;
+package AOC2020;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 
-public class PartOne {
+public class DayOne {
     public static void main(String[] args) throws IOException {
 
         ArrayList<Integer> expenses = new ArrayList<>();
