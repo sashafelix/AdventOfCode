@@ -5,7 +5,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class DayFour {
@@ -17,11 +16,22 @@ public class DayFour {
                 entries.add(passport.get());
                 passport.set("");
             }
-            passport.set(passport + " " + s);
+            passport.set(passport + s + " ");
         });
         entries.add(passport.get() + " ");
         int validPassport = 0;
-        System.out.println(entries.size());
+        ArrayList<Object> eclCheck = new ArrayList<>();
+        eclCheck.add("amb");
+        eclCheck.add("blu");
+        eclCheck.add("brn");
+        eclCheck.add("gry");
+        eclCheck.add("grn");
+        eclCheck.add("hzl");
+        eclCheck.add("oth");
+        char hash = '#';
+        String cm = "cm";
+        String in = "in";
+//        System.out.println(entries.size());
 
         for (int i = 0; i < entries.size(); i++) {
             String entry = entries.get(i);
@@ -33,10 +43,26 @@ public class DayFour {
                     entry.contains("ecl") &&
                     entry.contains("pid")) {
 
-                int byrIndex = Integer.parseInt(entries.get(i).substring(entries.get(i).indexOf("byr")+4, entries.get(i).indexOf(" ", entries.get(i).indexOf("byr"))));
-                System.out.println(byrIndex);
-//                int byrIndex = Integer.parseInt(entry.substring(entry.indexOf("byr") + 4, entry.indexOf(" ", entry.indexOf("byr"))));
-//                validPassport++;
+//                System.out.println(entry);
+
+                int byrValue = Integer.parseInt(entry.substring(entry.indexOf("byr") + 4, entry.indexOf(" ", entry.indexOf("byr"))));
+                int iyrValue = Integer.parseInt(entry.substring(entry.indexOf("iyr") + 4, entry.indexOf(" ", entry.indexOf("iyr"))));
+                int eyrValue = Integer.parseInt(entry.substring(entry.indexOf("eyr") + 4, entry.indexOf(" ", entry.indexOf("eyr"))));
+                String hgtValue = entry.substring(entry.indexOf("hgt") + 4, entry.indexOf(" ", entry.indexOf("hgt")));
+                String hclValue = entry.substring(entry.indexOf("hcl") + 4, entry.indexOf(" ", entry.indexOf("hcl")));
+                String eclValue = entry.substring(entry.indexOf("ecl") + 4, entry.indexOf(" ", entry.indexOf("ecl")));
+//                int pidValue = Integer.parseInt(entry.substring(entry.indexOf("pid") + 4, entry.indexOf(" ", entry.indexOf("pid"))));
+
+                if (byrValue >= 1920 && byrValue <= 2002 &&
+                        iyrValue >= 2010 && iyrValue <= 2020 &&
+                        eyrValue >= 2020 && eyrValue <= 2030 &&
+                        eclCheck.contains(eclValue) &&
+                        hclValue.toUpperCase().matches("[#A-F0-9]+") &&
+                        hclValue.length() == 7 &&
+                        hclValue.charAt(0) == hash) {
+
+                    validPassport++;
+                }
             }
         }
         System.out.println(validPassport);
