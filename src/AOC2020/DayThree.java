@@ -21,17 +21,15 @@ public class DayThree {
             if(y >= 323){
                 break;
             }
-            x = x + 7;x = x % 31;
+            x = x + 3;x = x % 31;
             if(map[y][x] == '#'){
                 treecount++;
             }
-            System.out.println("X: " + x);
-            System.out.println("Y: " + y);
+            System.out.println("{X: " + x + "} {Y: " + y + "}");
             System.out.println(map[y][x]);
             y = y + 1;
         }
         System.out.println(treecount);
-        System.out.println(50*148*53*64*29);
     }
 }
 
