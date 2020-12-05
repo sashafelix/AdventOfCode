@@ -31,6 +31,8 @@ public class DayFour {
         char hash = '#';
         String cm = "cm";
         String in = "in";
+        int heightInCM = 0;
+        int heightInIn = 0;
 //        System.out.println(entries.size());
 
         for (int i = 0; i < entries.size(); i++) {
@@ -51,16 +53,26 @@ public class DayFour {
                 String hgtValue = entry.substring(entry.indexOf("hgt") + 4, entry.indexOf(" ", entry.indexOf("hgt")));
                 String hclValue = entry.substring(entry.indexOf("hcl") + 4, entry.indexOf(" ", entry.indexOf("hcl")));
                 String eclValue = entry.substring(entry.indexOf("ecl") + 4, entry.indexOf(" ", entry.indexOf("ecl")));
-//                int pidValue = Integer.parseInt(entry.substring(entry.indexOf("pid") + 4, entry.indexOf(" ", entry.indexOf("pid"))));
+                String pidValue = entry.substring(entry.indexOf("pid") + 4, entry.indexOf(" ", entry.indexOf("pid")));
 
+
+                int cmHeight = 0;
+                if(hgtValue.length() == 5 && hgtValue.contains("cm")){
+//                    && cmHeight <= 193 && cmHeight >= 153
+                    cmHeight = Integer.parseInt(hgtValue.substring(0, 3));
+                    System.out.println(cmHeight);
+
+                }
                 if (byrValue >= 1920 && byrValue <= 2002 &&
                         iyrValue >= 2010 && iyrValue <= 2020 &&
                         eyrValue >= 2020 && eyrValue <= 2030 &&
                         eclCheck.contains(eclValue) &&
                         hclValue.toUpperCase().matches("[#A-F0-9]+") &&
                         hclValue.length() == 7 &&
-                        hclValue.charAt(0) == hash) {
-
+                        hclValue.charAt(0) == hash &&
+                        pidValue.length() == 9 &&
+                        pidValue.matches("[0-9]+") &&
+                        cmHeight >= 158 || cmHeight <= 193) {
                     validPassport++;
                 }
             }
