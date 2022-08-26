@@ -11,7 +11,7 @@ public class DayFour {
     public static void main(String[] args) throws IOException {
         List<String> entries = new ArrayList<>();
         AtomicReference<String> passport = new AtomicReference<>("");
-        Files.lines(Path.of("src/resources/inputDayFour.txt")).forEach(s -> {
+        Files.lines(Path.of("src/AOC2020/Resources/inputDayFour.txt")).forEach(s -> {
             if (s.equals("")) {
                 entries.add(passport.get());
                 passport.set("");
