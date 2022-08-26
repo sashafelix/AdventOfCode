@@ -8,7 +8,7 @@ public class DayOnePartOne {
     private static int fuelSum = 0;
 
     public static void main(String[] args) throws IOException {
-        Files.lines(Path.of("src/resources/input.txt")).forEach(s -> {
+        Files.lines(Path.of("src/resources/DayOne.txt")).forEach(s -> {
             fuelSum += fuelCalc(Integer.valueOf(s));
         });
         System.out.println(fuelSum);
